@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block titulo %}Contato{% endblock %}
+{% block content %}
+
+
+<ul class="image-list">
+    <li>
+        <a href="https://www.youtube.com/" class="image-link">
+            <div class="image-container">
+                <img src="{{ url_for('static', filename='images/img.png') }}">Youtube
+            </div>
+        </a>
+    </li>
+    <li>
+        <a href="https://www.instagram.com/" class="image-link">
+            <div class="image-container">
+                <img src="{{ url_for('static', filename='images/img2.png') }}">Instagram
+            </div>
+        </a>
+    </li>
+    <li>
+        <a href="https://www.facebook.com/" class="image-link">
+            <div class="image-container">
+                <img src="{{ url_for('static', filename='images/img3.png') }}">Facebook
+            </div>
+        </a>
+    </li>
+        
+</ul>
+
+
+{% endblock %}

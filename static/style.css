@@ -1,0 +1,127 @@
+
+body {
+    height: 100vh;
+    background: linear-gradient(135deg, #2d5966, #fad0c4);
+}
+
+.text-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.container-1 {
+    max-width: 600px;
+    padding: 20px;
+    background: white;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+p {
+    color: #555;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #2f3d39;
+    height: 45px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+
+}
+
+header ul {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+
+header ul li {
+    margin: 0 15px;
+}
+
+header ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+header ul.signin {
+    position: absolute;
+    right: 10px;
+}
+
+.alert {
+    position: fixed;
+    background-color: red;
+    top: 10px;
+    right: 50%;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    z-index: 1000;
+}
+
+.image-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+.image-list li {
+    width: 300px;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    padding-right: 20px;
+    background: rgba(160, 160, 160, 0.5); 
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer; 
+}
+
+.image-list img {
+    width: 100px; 
+    height: 100px;
+    object-fit: cover;
+    margin-right: 20px;
+    border-radius: 10px;
+}
+
+/* Efeito de clique */
+.image-list li:active {
+    transform: scale(0.95); /* Faz o item encolher ligeiramente */
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Aprofunda a sombra ao clicar */
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+.image-link {
+    display: block;
+    text-decoration: none; 
+    color: inherit;
+    width: 100%; 
+}
