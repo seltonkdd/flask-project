@@ -14,6 +14,7 @@ def create_database():
                 username TEXT NOT NULL,
                 email TEXT NOT NULL,
                 password TEXT NOT NULL,
+                bio TEXT,
                 CONSTRAINT unique_email UNIQUE (email)
                   )''')
     conn.commit()

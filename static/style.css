@@ -125,3 +125,39 @@ a {
     color: inherit;
     width: 100%; 
 }
+
+.profile-header {
+    display: flex; /* Usa o Flexbox */
+    align-items: center; /* Alinha as coisas verticalmente no centro */
+    justify-content: flex-start; /* Alinha a imagem à esquerda */
+    gap: 200px; /* Espaçamento entre a imagem e o texto */
+    padding: 20px;
+}
+
+.profile-img {
+    flex-shrink: 0; /* Impede que a imagem encolha */
+}
+
+.profile-img img {
+    width: 200px; /* Tamanho fixo para a imagem */
+    height: 200px; /* Tamanho fixo para a imagem */
+    object-fit: cover; /* Mantém a imagem dentro do tamanho sem deformação */
+    border-radius: 50%; /* Deixa a imagem circular */
+    border: 3px solid #ddd; /* Borda ao redor da imagem */
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column; /* Coloca os textos em uma coluna */
+    justify-content: center; /* Centraliza os textos verticalmente */
+}
+
+.profile-info h1 {
+    font-size: 50px;
+    margin: 0;
+}
+
+.user-info {
+    font-size: 32px;
+    margin: 5px 0;
+}
