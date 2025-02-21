@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, session
+from flask import Flask, render_template, request, redirect, url_for, flash
 from db import create_database, salvar_database, get_database, delete_and_save, get_user_by_id, update_database
 from flask_login import LoginManager, login_user, login_required, current_user, logout_user
 from models import User
@@ -7,7 +7,7 @@ import hashlib
 app = Flask(__name__)
 app.config['DEBUG'] = True
 lm = LoginManager(app)
-app.secret_key = 'supersecretkey'
+app.secret_key = 'supersecretkey' # chave secreta para executar flask-login
 previous_password = ''
 
 @lm.user_loader
