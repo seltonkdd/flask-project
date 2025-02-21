@@ -21,14 +21,22 @@ def create_database():
     conn.close()
 
 
-def salvar_database(username, email, password):
+def salvar_database(username, email, password, bio=''):
     hash = hashlib.sha256(password.encode()).hexdigest()
     conn = sqlite3.connect('database/db_users.db', check_same_thread=False)
     c = conn.cursor()
-    c.execute('INSERT INTO users (username, email, password) VALUES (?, ?, ?)', (username, email, hash))
+    c.execute('INSERT INTO users (username, email, password, bio) VALUES (?, ?, ?, ?)', (username, email, hash, bio))
     conn.commit()
     conn.close()
 
+
+def update_database(id, username, email, password, bio=''):
+    hash = hashlib.sha256(password.encode()).hexdigest()
+    conn = sqlite3.connect('database/db_users.db', check_same_thread=False)
+    c = conn.cursor()
+    c.execute('UPDATE users SET username=?, email=?, password=?, bio=? WHERE id=?', (username, email, hash, bio, id))
+    conn.commit()
+    conn.close()
 
 def get_database():
     conn = sqlite3.connect('database/db_users.db', check_same_thread=False)
@@ -41,7 +49,6 @@ def get_user_by_id(id):
     c = conn.cursor()
     user = c.execute('SELECT * FROM users WHERE id=?', (id,)).fetchone()
     conn.close()
-    print(user)
     return user
 
 def delete_and_save(id):

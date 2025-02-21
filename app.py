@@ -1,5 +1,5 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
-from db import create_database, salvar_database, get_database, delete_and_save, get_user_by_id
+from flask import Flask, render_template, request, redirect, url_for, flash, session
+from db import create_database, salvar_database, get_database, delete_and_save, get_user_by_id, update_database
 from flask_login import LoginManager, login_user, login_required, current_user, logout_user
 from models import User
 import hashlib
@@ -8,6 +8,7 @@ app = Flask(__name__)
 app.config['DEBUG'] = True
 lm = LoginManager(app)
 app.secret_key = 'supersecretkey'
+previous_password = ''
 
 @lm.user_loader
 def user_loader(id):
@@ -19,15 +20,22 @@ def user_loader(id):
 @app.route('/')
 @login_required
 def index():
-    return render_template('index.html', person=current_user.username)
+    return render_template('index.html')
+
+@lm.unauthorized_handler
+def unauthorized():
+    return redirect(url_for('login'))
 
 @app.route('/registrar', methods=['GET', 'POST'])
 def registrar():
     logout_user()
+    global previous_password
     if request.method == 'POST':
         username = request.form['usernameForm']
         email = request.form['emailForm']
         password = request.form['passwordForm']
+        previous_password = password
+        print(previous_password)
         salvar_database(username, email, password)
 
         return redirect(url_for('login'))
@@ -35,6 +43,7 @@ def registrar():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    logout_user()
     if request.method == 'POST':
         email = request.form['emailForm']
         password = request.form['passwordForm']
@@ -61,19 +70,33 @@ def contato():
 @app.route('/profile')
 @login_required
 def profile():
-    return render_template('profile.html', user=current_user.username, email=current_user.email, bio=current_user.bio)
+    return render_template('profile.html', id=str(current_user.id), user=current_user.username, email=current_user.email, bio=current_user.bio)
 
 @app.route('/users')
+@login_required
 def users():
     db = get_database()
     users = db.execute('SELECT * FROM users').fetchall()
     db.close()
     return {"usuarios": [dict(row) for row in users]}
 
-@app.route('/edit')
+@app.route('/edit/<int:id>', methods=['GET', 'POST'])
 def edit_user(id):
-    user = get_user_by_id(id)
-    return render_template('editar.html')
+    global previous_password
+    if request.method == 'POST':
+        username = request.form['usernameForm']
+        email = request.form['emailForm']
+        if email == '':
+            email = current_user.email
+        password = request.form['passwordForm']
+        if password == '':
+            password = previous_password
+        previous_password = password
+        bio = request.form['bio']
+        update_database(id, username, email, password, bio)
+        return redirect(url_for('profile'))
+
+    return render_template('editar.html', user=current_user)
 
 @app.route('/delete/<int:id>')
 def delete_user(id):

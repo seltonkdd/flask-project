@@ -5,7 +5,7 @@
 <div class="profile-header">
     <div class="profile-img">
         <img src="{{ url_for('static', filename='images/profile.jpeg') }}" alt="Foto de perfil" class="profile-img"><br>
-        <a href="{{ url_for('edit_user') }}">Editar informações</a>
+        <a href="{{ url_for('edit_user', id=id) }}">Editar informações</a>
     </div>
     
     <div class="profile-info">

@@ -1,2 +1,26 @@
 {% extends 'base.html' %}
-{% block titulo %}Editar{% block titulo %}
+{% block titulo %}Editar{% endblock %}
+{% block content %}
+
+<div class="update-profile">
+    <h2>Atualizar Perfil</h2>
+    <form method="post">
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="username" class="form-control" name="usernameForm" value="{{user.username}}" placeholder="Digite seu nome">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" name="emailForm" value="{{user.email}}" placeholder="Digite seu email">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Senha</label>
+            <input type="textarea" class="form-control" name="passwordForm" placeholder="Digite sua senha">
+        </div>
+        <div class="mb-3">
+            <label for="bio" class="form-label">Biografia</label><br>
+            <textarea id="bio" name="bio">{{ user.bio }}</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Salvar</button>
+    </form>
+</div>
+
+{% endblock %}
