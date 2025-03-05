@@ -11,7 +11,8 @@ Python 3.9+
 
 [Flask-Login](https://flask-login.readthedocs.io/en/latest/)
 
-SQlite
+#### Clone o projeto
+    git clone "https://github.com/seltonkdd/flask-project"
 
 #### Faça a instalação do ambiente virtual via terminal
     python -m venv env
